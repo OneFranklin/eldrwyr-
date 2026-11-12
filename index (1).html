@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070606">
+<title>Eldrwyr — Обряд активации</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Forum&family=Noto+Sans+Runic&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#070606;--gold:#dfb260;--pale:#f7e3b5;--amber:#ffa62b;--dim:#a39485;--text:#e9e0d2;--el:#ff2a44;
+color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(110% 55% at 50% 108%,#2b1707 0,transparent 62%),var(--ink);color:var(--text);
+font:400 1.22rem/1.6 'Cormorant Garamond',Georgia,serif;overflow-x:hidden;-webkit-text-size-adjust:100%}
+#fire{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.glow{position:fixed;bottom:0;width:46vw;max-width:380px;height:62vh;pointer-events:none;z-index:0;animation:flick 9s ease-in-out infinite alternate}
+.glow.l{left:0;background:radial-gradient(ellipse 100% 70% at 0 100%,rgba(255,150,30,.09),transparent 70%)}
+.glow.r{right:0;background:radial-gradient(ellipse 100% 70% at 100% 100%,rgba(255,150,30,.09),transparent 70%);animation-delay:-4.5s}
+@keyframes flick{from{opacity:.65}to{opacity:1}}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:40px 28px 72px}
+h1,h2,h3{font-family:Forum,'Cormorant Garamond',serif;font-weight:400;margin:0;text-wrap:balance}
+hr{border:0;height:1px;margin:48px 0;background:linear-gradient(90deg,transparent,rgba(223,178,96,.5),transparent)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--pale);outline-offset:4px}
+
+header{text-align:center;padding-top:8vh}
+.brand{font:900 clamp(2.6rem,13.5vw,4.8rem)/1 Cinzel,serif;letter-spacing:.08em;padding-left:.08em;margin:0;animation:ignite 2.6s ease-out both}
+.el{color:var(--el);text-shadow:0 0 12px rgba(255,42,68,.7),0 0 32px rgba(255,42,68,.35);animation:elp 2.6s ease-in-out infinite}
+.rest{background:linear-gradient(180deg,#f7e3b5,#dfb260 55%,#9a6f25);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes elp{50%{text-shadow:0 0 20px rgba(255,42,68,.95),0 0 50px rgba(255,42,68,.55)}}
+@keyframes ignite{0%{opacity:0;filter:blur(14px);letter-spacing:.18em}100%{opacity:1;filter:none;letter-spacing:.08em}}
+.sub{font:400 1.05rem/1.4 Forum,serif;color:var(--gold);letter-spacing:.14em;margin:18px 0 0;animation:rise 2s 1.2s ease-out both}
+@keyframes rise{from{opacity:0}to{opacity:1}}
+
+.lead p{margin:0 0 1em}
+.lead p:first-child::first-letter{font:400 3.3rem/.8 Forum,serif;color:var(--gold);float:left;padding:6px 10px 0 0}
+
+h2{font-size:1.7rem;color:var(--pale);text-align:center;margin-bottom:28px}
+.steps{list-style:none;margin:0;padding:0 0 0 0;position:relative}
+.steps::before{content:'';position:absolute;left:17px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--gold),rgba(223,178,96,.1))}
+.steps li{position:relative;padding:0 0 30px 56px}
+.steps li:last-child{padding-bottom:0}
+.n{position:absolute;left:0;top:0;width:35px;height:35px;border-radius:50%;background:var(--ink);border:1px solid var(--gold);color:var(--gold);
+display:grid;place-items:center;font:400 1.05rem/1 Forum,serif;box-shadow:0 0 14px rgba(255,166,43,.25)}
+.steps h3{font-size:1.25rem;color:var(--gold);margin:3px 0 4px}
+.steps p{margin:0}
+.spell{margin:18px 0 0;padding:20px 18px;text-align:center;font-style:italic;font-size:1.28rem;color:var(--pale);
+border-block:1px solid rgba(223,178,96,.4);background:linear-gradient(90deg,transparent,rgba(255,150,30,.08),transparent);text-shadow:0 0 18px rgba(255,166,43,.35)}
+
+.zone{text-align:center}
+.runes{display:flex;justify-content:center;gap:clamp(20px,8vw,44px)}
+.rune{opacity:.3;transition:opacity .7s,filter .7s}
+.rune i{display:block;font:normal 400 clamp(3.2rem,17vw,4.6rem)/1.15 'Noto Sans Runic','Segoe UI Historic','Segoe UI Symbol',serif;color:var(--gold);transition:color .7s}
+.rune small{display:block;font:400 .95rem/1.3 Forum,serif;color:var(--dim);margin-top:2px}
+.rune.lit{opacity:1;filter:drop-shadow(0 0 14px rgba(255,166,43,.85))}
+.rune.lit i{color:var(--pale)}
+.seal{position:relative;display:block;width:176px;height:176px;margin:34px auto 14px;padding:0;border:0;border-radius:50%;cursor:pointer;color:var(--pale);
+background:radial-gradient(circle at 50% 38%,#2c1a0b,#0c0806 72%);box-shadow:0 0 40px rgba(255,150,30,.14),inset 0 0 30px rgba(0,0,0,.7);
+touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;transition:transform .25s,box-shadow .4s}
+.seal.hold{transform:scale(.96);box-shadow:0 0 80px rgba(255,166,43,.5),inset 0 0 36px rgba(255,166,43,.28)}
+.seal svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.seal b{position:relative;display:block;font:400 3.2rem/1 'Noto Sans Runic','Segoe UI Historic',serif;color:var(--gold);text-shadow:0 0 18px rgba(255,166,43,.6)}
+.seal em{position:relative;display:block;font:400 1rem/1 Forum,serif;font-style:normal;letter-spacing:.12em;margin-top:8px;color:var(--pale)}
+.seal span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hint{color:var(--dim);font-size:1.05rem;margin:0}
+.done{display:none}
+.zone.sealed .hold-ui{display:none}
+.zone.sealed .done{display:block;animation:rise 1.4s ease-out both}
+.zone.sealed .rune{opacity:1;filter:drop-shadow(0 0 18px rgba(255,166,43,.95))}
+.zone.sealed .rune i{color:var(--pale)}
+.done h2{margin:30px 0 10px}
+.done p{margin:0 0 22px}
+.tg{display:inline-block;padding:14px 28px;border:1px solid var(--gold);border-radius:999px;color:var(--pale);text-decoration:none;font:400 1.1rem/1 Forum,serif;letter-spacing:.06em;
+background:rgba(255,150,30,.08);box-shadow:0 0 24px rgba(255,166,43,.2);transition:box-shadow .3s,background .3s}
+.tg:hover{box-shadow:0 0 38px rgba(255,166,43,.5);background:rgba(255,150,30,.16)}
+
+.dr button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0;background:none;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.dr h3{font-size:1.4rem;color:var(--pale)}
+.dr small{display:block;color:var(--dim);font-size:1rem}
+.arr{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(223,178,96,.5);display:grid;place-items:center;color:var(--gold);transition:transform .6s}
+.dr.open .arr{transform:rotate(180deg)}
+.dr-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s ease}
+.dr.open .dr-body{grid-template-rows:1fr}
+.dr-body>div{overflow:hidden}
+.dr ul{list-style:none;margin:0;padding:22px 0 0}
+.dr li{position:relative;padding:0 0 14px 28px}
+.dr li::before{content:'✦';position:absolute;left:0;color:var(--amber)}
+.dr li b{color:var(--gold);font-weight:600}
+footer{text-align:center;margin-top:56px;font:400 .9rem/1 Forum,serif;letter-spacing:.2em;color:#6f6459}
+#flash{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 55%,rgba(255,236,190,.45),rgba(255,166,43,.15) 45%,transparent 72%)}
+#flash.go{animation:flash 2.8s ease-in-out}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="fire" aria-hidden="true"></canvas>
+<div class="glow l" aria-hidden="true"></div><div class="glow r" aria-hidden="true"></div>
+<div id="flash" aria-hidden="true"></div>
+
+<main>
+<header>
+  <h1 class="brand" aria-label="Eldrwyr"><span class="el">EL</span><span class="rest">drwyr</span></h1>
+  <p class="sub">Освящение талисмана силой Огня</p>
+</header>
+
+<hr>
+<section class="lead">
+  <p>Возьми талисман в руки. Почувствуй его вес, текстуру, прохладу или тепло. Сейчас ты держишь не просто украшение — это рукотворный сосуд, готовый принять древнюю силу.</p>
+  <p>Этот обряд оживит твой став. Огонь пробудит три знака: ветер мудрости, щит защиты и пламя прорыва.</p>
+</section>
+
+<hr>
+<section>
+  <h2>Обряд активации</h2>
+  <ol class="steps">
+    <li><span class="n">1</span><h3>Подготовка</h3><p>Положи талисман в ладони. Закрой глаза, сделай три глубоких вдоха и почувствуй, как амулет наполняется твоим теплом.</p></li>
+    <li><span class="n">2</span><h3>Огненное пробуждение</h3><p>Зажги свечу. Аккуратно проведи талисман три раза над пламенем, заряжая знаки ᚨ, ᛉ и ᛞ стихией Огня.</p></li>
+    <li><span class="n">3</span><h3>Оговор</h3><p>Глядя на талисман в свете свечи, произнеси вслух:</p>
+      <p class="spell">«Силой рун Ансуз, Альгиз и Дагаз этот став наделяет меня мудростью, бережёт от невзгод и даёт стремительный прорыв в моих делах. Став работает во благо мне. Да будет так!»</p></li>
+    <li><span class="n">4</span><h3>Печать</h3><p>Положи палец на печать ниже и держи, пока все три руны не загорятся.</p></li>
+  </ol>
+</section>
+
+<section class="zone" id="zone" style="margin-top:44px">
+  <div class="runes">
+    <div class="rune"><i>ᚨ</i><small>Ансуз<br>мудрость</small></div>
+    <div class="rune"><i>ᛉ</i><small>Альгиз<br>защита</small></div>
+    <div class="rune"><i>ᛞ</i><small>Дагаз<br>прорыв</small></div>
+  </div>
+  <div class="hold-ui">
+    <button class="seal" id="seal" aria-label="Удерживай, чтобы запечатать обряд">
+      <svg viewBox="0 0 176 176" aria-hidden="true"><circle cx="88" cy="88" r="82" fill="none" stroke="rgba(223,178,96,.25)" stroke-width="2"/><circle id="ring" cx="88" cy="88" r="82" fill="none" stroke="#f7e3b5" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 6px rgba(255,166,43,.9))"/></svg>
+      <span><b>ᚲ</b><em>Держи</em></span>
+    </button>
+    <p class="hint">Удерживай печать, пока огонь не наберёт силу</p>
+  </div>
+  <div class="done">
+    <h2>Обряд завершён</h2>
+    <p>Огонь запечатлел силу рун. Талисман пробуждён и связан с тобой.</p>
+    <a class="tg" href="https://t.me/Eldrwyr" target="_blank" rel="noopener">Связаться с Мастером в Telegram</a>
+  </div>
+</section>
+
+<hr>
+<section class="dr" id="dr">
+  <button id="drBtn" aria-expanded="false" aria-controls="drBody">
+    <span><h3>Тайна хранения и ношения</h3><small>Как сохранить силу талисмана</small></span>
+    <span class="arr" aria-hidden="true">▾</span>
+  </button>
+  <div class="dr-body" id="drBody"><div><ul>
+    <li><b>Личный контакт.</b> Носи талисман ближе к телу или держи на рабочем столе. Это твой личный артефакт.</li>
+    <li><b>Скрыт от чужих глаз.</b> Не давай талисман в руки посторонним, чтобы не сбить его настройку.</li>
+    <li><b>Подпитка.</b> Если почувствуешь спад силы, повтори визуализацию пламени или подержи амулет в ладонях.</li>
+  </ul></div></div>
+</section>
+
+<footer>© Eldrwyr. Sacred Rituals</footer>
+</main>
+
+<script>
+(function(){
+var cv=document.getElementById('fire'),g=cv.getContext('2d'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var W,H;
+function size(){var d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;g.setTransform(d,0,0,d,0,0)}
+size();addEventListener('resize',size);
+var cols=['255,244,200','255,205,100','255,160,40','205,95,15','95,40,10'];
+var spr=cols.map(function(c){var s=document.createElement('canvas');s.width=s.height=64;var x=s.getContext('2d'),r=x.createRadialGradient(32,32,0,32,32,32);
+r.addColorStop(0,'rgba('+c+',1)');r.addColorStop(.28,'rgba('+c+',.95)');r.addColorStop(.5,'rgba('+c+',.22)');r.addColorStop(1,'rgba('+c+',0)');x.fillStyle=r;x.fillRect(0,0,64,64);return s});
+var ps=[],P=0,T=1,acc=0,prog=0,hold=false,done=false,last=0;
+function rnd(a,b){return a+Math.random()*(b-a)}
+function spawn(y0){
+  var left=Math.random()<.5,sw=Math.max(34,Math.min(W*.14,150)),e=Math.pow(Math.random(),1.3)*sw,y=y0===undefined?(Math.random()<.4?H+rnd(0,14):rnd(H*.1,H)):y0,v=rnd(.18,.55);
+  ps.push({x:left?e:W-e,y:y,vx:(left?1:-1)*rnd(-.03,.08),vy:-v,l:1,d:v/(Math.max(H*.2,y)*rnd(.5,1.2)),
+  s:rnd(2.5,6),a:rnd(.55,.95),sw:rnd(.1,.5),fq:rnd(.0004,.0011),ph:rnd(0,6.28),c:Math.random()<.35?0:1,f:0});
+}
+function burst(x,y,n){for(var i=0;i<n;i++){var a=rnd(0,6.28),v=rnd(.2,1.1);ps.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,d:rnd(.002,.004),s:rnd(2.5,6),a:.9,sw:.15,fq:.0007,ph:rnd(0,6.28),c:Math.random()<.35?0:1,f:.985,u:.005})}}
+var seal=document.getElementById('seal'),ring=document.getElementById('ring'),runes=[].slice.call(document.querySelectorAll('.rune')),zone=document.getElementById('zone');
+var C=2*Math.PI*82;ring.style.strokeDasharray=C;ring.style.strokeDashoffset=C;for(var k=0;k<60;k++)spawn(rnd(H*.1,H));
+function ui(p){ring.style.strokeDashoffset=C*(1-p);seal.classList.toggle('hold',hold);runes.forEach(function(r,i){r.classList.toggle('lit',p>(i+1)/3-.04)})}
+function finish(){
+  done=true;hold=false;ui(1);T=1.5;
+  var b=seal.getBoundingClientRect();burst(b.left+b.width/2,b.top+b.height/2,70);
+  var f=document.getElementById('flash');f.classList.add('go');
+  if(navigator.vibrate)navigator.vibrate([30,40,70]);
+  zone.classList.add('sealed');
+  setTimeout(function(){zone.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'})},500);
+}
+function frame(t){
+  var dt=Math.min(3,(t-last)/16.7)||1;last=t;
+  if(!done){prog=Math.max(0,Math.min(1,prog+(hold?dt*16.7/2800:-dt*16.7/900)));ui(prog);T=1+prog*1.8;if(prog>=1)finish();}
+  P+=(T-P)*.02*dt;
+  acc+=P*(RM?.025:.05)*dt;
+  while(acc>=1&&ps.length<800){spawn();acc--}
+  if(acc>5)acc=0;
+  g.clearRect(0,0,W,H);g.globalCompositeOperation='lighter';
+  for(var i=ps.length-1;i>=0;i--){
+    var p=ps[i];p.l-=p.d*dt;
+    if(p.l<=0||p.y<-12){ps[i]=ps[ps.length-1];ps.pop();continue}
+    p.x+=(p.vx+Math.sin(t*p.fq+p.ph)*p.sw)*dt;p.y+=p.vy*dt;
+    if(p.f){p.vx*=p.f;p.vy=p.vy*p.f-(p.u||0)}
+    var r=p.s;
+    g.globalAlpha=Math.min(1,(1-p.l)*6,p.l*2.5)*p.a*(.75+.25*Math.sin(t*.003+p.ph))*Math.max(0,Math.min(1,p.y/(H*.22)));
+    g.drawImage(spr[p.c],p.x-r,p.y-r,r*2,r*2);
+  }
+  g.globalAlpha=1;
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+function down(e){if(done)return;hold=true;if(e.pointerId!==undefined&&seal.setPointerCapture){try{seal.setPointerCapture(e.pointerId)}catch(x){}}if(navigator.vibrate)navigator.vibrate(12)}
+function up(){hold=false}
+seal.addEventListener('pointerdown',down);
+['pointerup','pointercancel','lostpointercapture'].forEach(function(n){seal.addEventListener(n,up)});
+seal.addEventListener('contextmenu',function(e){e.preventDefault()});
+seal.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();down(e)}});
+seal.addEventListener('keyup',function(e){if(e.key==='Enter'||e.key===' ')up()});
+
+var dr=document.getElementById('dr'),btn=document.getElementById('drBtn');
+btn.addEventListener('click',function(){var o=dr.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+})();
+</script>
+</body>
+</html>
